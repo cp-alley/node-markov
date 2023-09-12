@@ -46,26 +46,20 @@ class MarkovMachine {
     // - start at the first word in the input text
     // - find a random word from the following-words of that
     // - repeat until reaching the terminal null
-    let text = "";
-    let startingWord = this.words[0];
-    text += startingWord;
+    let text = [];
+    let word = this.words[0];
 
-    //refactor without calling this twice, reassign starting word in while loop
-    let nextWord = _getRandomNextWord.call(this, startingWord);
-
-    while (nextWord) {
-      //add word to array, join all at the end
-      text += ` ${nextWord}`;
-      nextWord = _getRandomNextWord.call(this, nextWord);
+    while (word) {
+      text.push(word);
+      word = this._getChoice(word)
     }
 
-    //move outside gettext function
-    function _getRandomNextWord(word) {
-      let randomIndex = Math.floor(Math.random() * this.chains[word].length);
-      return this.chains[word][randomIndex];
-    }
+    return text.join(" ");
+  }
 
-    return text;
+  _getChoice(word) {
+    let randomIndex = Math.floor(Math.random() * this.chains[word].length);
+    return this.chains[word][randomIndex];
   }
 }
 
