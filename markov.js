@@ -50,13 +50,16 @@ class MarkovMachine {
     let startingWord = this.words[0];
     text += startingWord;
 
+    //refactor without calling this twice, reassign starting word in while loop
     let nextWord = _getRandomNextWord.call(this, startingWord);
 
     while (nextWord) {
+      //add word to array, join all at the end
       text += ` ${nextWord}`;
       nextWord = _getRandomNextWord.call(this, nextWord);
     }
 
+    //move outside gettext function
     function _getRandomNextWord(word) {
       let randomIndex = Math.floor(Math.random() * this.chains[word].length);
       return this.chains[word][randomIndex];
