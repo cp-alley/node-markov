@@ -1,3 +1,4 @@
+"use strict";
 /** Textual markov chain generator. */
 
 
