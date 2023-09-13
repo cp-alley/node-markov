@@ -22,4 +22,13 @@ describe("Test instantiating MarkovMachine class", function(){
           })
     })
 
+    test(("Test getText method"), function () {
+        const test = machine.getText();
+        expect(test).toContain('The');
+        expect(test).toContain('cat.');
+        expect(test).toContain('is');
+        expect(test).not.toContain('The is');
+        expect(test).not.toContain('The in');
+        expect(test).not.toContain('The a');
+    })
 })
